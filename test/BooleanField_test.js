@@ -249,7 +249,7 @@ describe("BooleanField", () => {
 
     const labels = [].map.call(
       node.querySelectorAll(".field-radio-group label"),
-      label => label.textContent
+      (label) => label.textContent
     );
     expect(labels).eql(["yes", "no"]);
   });
@@ -266,7 +266,7 @@ describe("BooleanField", () => {
 
     const labels = [].map.call(
       node.querySelectorAll(".field-radio-group label"),
-      label => label.textContent
+      (label) => label.textContent
     );
     expect(labels).eql(["no", "yes"]);
   });
@@ -283,7 +283,7 @@ describe("BooleanField", () => {
 
     const labels = [].map.call(
       node.querySelectorAll(".field-radio-group label"),
-      label => label.textContent
+      (label) => label.textContent
     );
     expect(labels).eql(["Yes", "No"]);
   });
@@ -309,7 +309,7 @@ describe("BooleanField", () => {
 
     const labels = [].map.call(
       node.querySelectorAll(".field-radio-group label"),
-      label => label.textContent
+      (label) => label.textContent
     );
     expect(labels).eql(["Yes", "No"]);
   });
@@ -335,7 +335,7 @@ describe("BooleanField", () => {
 
     const labels = [].map.call(
       node.querySelectorAll(".field-radio-group label"),
-      label => label.textContent
+      (label) => label.textContent
     );
     expect(labels).eql(["No", "Yes"]);
   });
@@ -411,7 +411,7 @@ describe("BooleanField", () => {
 
     const labels = [].map.call(
       node.querySelectorAll(".field option"),
-      label => label.textContent
+      (label) => label.textContent
     );
     expect(labels).eql(["", "Yes", "No"]);
   });
@@ -528,7 +528,7 @@ describe("BooleanField", () => {
   });
 
   describe("Label", () => {
-    const Widget = props => <div id={`label-${props.label}`} />;
+    const Widget = (props) => <div id={`label-${props.label}`} />;
 
     const widgets = { Widget };
 

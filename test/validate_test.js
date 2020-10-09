@@ -354,7 +354,7 @@ describe("Validation", () => {
       },
     };
     const newErrorMessage = "Better error message";
-    const transformErrors = errors => {
+    const transformErrors = (errors) => {
       return [Object.assign({}, errors[0], { message: newErrorMessage })];
     };
 
@@ -430,7 +430,7 @@ describe("Validation", () => {
         it("should trigger the onError handler", () => {
           sinon.assert.calledWith(
             onError,
-            sinon.match(errors => {
+            sinon.match((errors) => {
               return errors[0].message === "is a required property";
             })
           );
@@ -486,7 +486,7 @@ describe("Validation", () => {
         it("should trigger the onError handler", () => {
           sinon.assert.calledWith(
             onError,
-            sinon.match(errors => {
+            sinon.match((errors) => {
               return (
                 errors[0].message === "should NOT be shorter than 10 characters"
               );
@@ -741,7 +741,7 @@ describe("Validation", () => {
         it("should trigger the onError handler", () => {
           sinon.assert.calledWith(
             onError,
-            sinon.match(errors => {
+            sinon.match((errors) => {
               return errors[0].message === "is a required property";
             })
           );

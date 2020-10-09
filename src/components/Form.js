@@ -140,7 +140,7 @@ export default class Form extends Component {
 
     let data = _pick(formData, fields);
     if (Array.isArray(formData)) {
-      return Object.keys(data).map(key => data[key]);
+      return Object.keys(data).map((key) => data[key]);
     }
 
     return data;
@@ -148,12 +148,12 @@ export default class Form extends Component {
 
   getFieldNames = (pathSchema, formData) => {
     const getAllPaths = (_obj, acc = [], paths = [""]) => {
-      Object.keys(_obj).forEach(key => {
+      Object.keys(_obj).forEach((key) => {
         if (typeof _obj[key] === "object") {
-          let newPaths = paths.map(path => `${path}.${key}`);
+          let newPaths = paths.map((path) => `${path}.${key}`);
           getAllPaths(_obj[key], acc, newPaths);
         } else if (key === "$name" && _obj[key] !== "") {
-          paths.forEach(path => {
+          paths.forEach((path) => {
             path = path.replace(/^\./, "");
             const formValue = _get(formData, path);
             // adds path to fieldNames if it points to a value
@@ -229,7 +229,7 @@ export default class Form extends Component {
     }
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     if (event.target !== event.currentTarget) {
       return;
@@ -342,7 +342,7 @@ export default class Form extends Component {
         acceptCharset={acceptcharset}
         noValidate={noHtml5Validate}
         onSubmit={this.onSubmit}
-        ref={form => {
+        ref={(form) => {
           this.formElement = form;
         }}>
         {this.renderErrors()}
