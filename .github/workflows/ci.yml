@@ -1,0 +1,38 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+name: Integration
+jobs:
+  chore:
+    name: Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Print environment
+        run: |
+          node --version
+          npm --version
+          python --version
+          pip --version
+      
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Lint
+        run: |
+          npm run cs-check
+          npm run lint
+
+      - name: Build
+        run: |
+          npm run build:dist
+          npm run build:lib
+          npm run build:playground
+
+      - name: Run tests
+        run: npm test
