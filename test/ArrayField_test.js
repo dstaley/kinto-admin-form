@@ -6,11 +6,11 @@ import { Simulate } from "react-dom/test-utils";
 import { createFormComponent, createSandbox } from "./test_utils";
 
 const ArrayKeyDataAttr = "data-rjsf-itemkey";
-const ExposedArrayKeyTemplate = function(props) {
+const ExposedArrayKeyTemplate = function (props) {
   return (
     <div className="array">
       {props.items &&
-        props.items.map(element => (
+        props.items.map((element) => (
           <div
             key={element.key}
             className="array-item"
@@ -63,7 +63,7 @@ const ExposedArrayKeyTemplate = function(props) {
 
 describe("ArrayField", () => {
   let sandbox;
-  const CustomComponent = props => {
+  const CustomComponent = (props) => {
     return <div id="custom">{props.rawErrors}</div>;
   };
 
@@ -726,7 +726,10 @@ describe("ArrayField", () => {
       const { node } = createFormComponent({
         schema: complexSchema,
         formData: {
-          foo: [{ bar: "bar1", baz: "baz1" }, { bar: "bar2", baz: "baz2" }],
+          foo: [
+            { bar: "bar1", baz: "baz1" },
+            { bar: "bar2", baz: "baz2" },
+          ],
         },
       });
 
@@ -1049,7 +1052,7 @@ describe("ArrayField", () => {
 
         const labels = [].map.call(
           node.querySelectorAll(".checkbox label"),
-          node => node.textContent
+          (node) => node.textContent
         );
         expect(labels).eql(["foo", "bar", "fuzz"]);
       });
@@ -1079,7 +1082,7 @@ describe("ArrayField", () => {
 
         const labels = [].map.call(
           node.querySelectorAll("[type=checkbox]"),
-          node => node.checked
+          (node) => node.checked
         );
         expect(labels).eql([true, false, true]);
       });
@@ -1183,7 +1186,7 @@ describe("ArrayField", () => {
         },
       });
 
-      return new Promise(resolve => setTimeout(resolve, 0)).then(() =>
+      return new Promise((resolve) => setTimeout(resolve, 0)).then(() =>
         expect(comp.state.formData).eql([
           "data:text/plain;name=file1.txt;base64,x=",
           "data:text/plain;name=file2.txt;base64,x=",
@@ -1257,7 +1260,10 @@ describe("ArrayField", () => {
     it("should render two lists of inputs inside of a list", () => {
       const { node } = createFormComponent({
         schema,
-        formData: [[1, 2], [3, 4]],
+        formData: [
+          [1, 2],
+          [3, 4],
+        ],
       });
       expect(node.querySelectorAll("fieldset fieldset")).to.have.length.of(2);
     });
@@ -1272,8 +1278,10 @@ describe("ArrayField", () => {
     });
 
     it("should pass rawErrors down to every level of custom widgets", () => {
-      const CustomItem = props => <div id="custom-item">{props.children}</div>;
-      const CustomTemplate = props => {
+      const CustomItem = (props) => (
+        <div id="custom-item">{props.children}</div>
+      );
+      const CustomTemplate = (props) => {
         return (
           <div id="custom">
             {props.items &&
@@ -1613,7 +1621,7 @@ describe("ArrayField", () => {
   });
 
   describe("Title", () => {
-    const TitleField = props => <div id={`title-${props.title}`} />;
+    const TitleField = (props) => <div id={`title-${props.title}`} />;
 
     const fields = { TitleField };
 

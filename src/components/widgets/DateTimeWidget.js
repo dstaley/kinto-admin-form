@@ -45,7 +45,7 @@ function DateTimeWidget(props) {
       type="datetime-local"
       {...props}
       value={utcToLocal(value)}
-      onChange={value => onChange(localToUTC(value))}
+      onChange={(value) => onChange(localToUTC(value))}
     />
   );
 }

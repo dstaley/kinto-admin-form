@@ -6,8 +6,8 @@ import { shouldRender } from "../src/utils";
 import { samples } from "./samples";
 import Form from "../src";
 
-const log = type => console.log.bind(console, type);
-const toJson = val => JSON.stringify(val, null, 2);
+const log = (type) => console.log.bind(console, type);
+const toJson = (val) => JSON.stringify(val, null, 2);
 const liveSettingsSchema = {
   type: "object",
   properties: {
@@ -120,7 +120,7 @@ class GeoPosition extends Component {
   }
 
   onChange(name) {
-    return event => {
+    return (event) => {
       this.setState({ [name]: parseFloat(event.target.value) });
       setTimeout(() => this.props.onChange(this.state), 0);
     };
@@ -183,7 +183,7 @@ class Editor extends Component {
     return false;
   }
 
-  onCodeChange = code => {
+  onCodeChange = (code) => {
     try {
       const parsedCode = JSON.parse(code);
       this.setState({ valid: true, code }, () =>
@@ -227,8 +227,8 @@ class Selector extends Component {
     return shouldRender(this, nextProps, nextState);
   }
 
-  onLabelClick = label => {
-    return event => {
+  onLabelClick = (label) => {
+    return (event) => {
       event.preventDefault();
       this.setState({ current: label });
       setTimeout(() => this.props.onSelected(samples[label]), 0);
@@ -271,7 +271,7 @@ function ThemeSelector({ theme, select }) {
 }
 
 class CopyLink extends Component {
-  onCopyClick = event => {
+  onCopyClick = (event) => {
     this.input.select();
     document.execCommand("copy");
   };
@@ -289,7 +289,7 @@ class CopyLink extends Component {
       <div className="input-group">
         <input
           type="text"
-          ref={input => (this.input = input)}
+          ref={(input) => (this.input = input)}
           className="form-control"
           defaultValue={shareURL}
         />
@@ -346,14 +346,14 @@ class App extends Component {
     return shouldRender(this, nextProps, nextState);
   }
 
-  load = data => {
+  load = (data) => {
     // Reset the ArrayFieldTemplate whenever you load new data
     const { ArrayFieldTemplate, ObjectFieldTemplate } = data;
     // uiSchema is missing on some examples. Provide a default to
     // clear the field in all cases.
     const { uiSchema = {} } = data;
     // force resetting form component instance
-    this.setState({ form: false }, _ =>
+    this.setState({ form: false }, (_) =>
       this.setState({
         ...data,
         form: true,
@@ -364,11 +364,11 @@ class App extends Component {
     );
   };
 
-  onSchemaEdited = schema => this.setState({ schema, shareURL: null });
+  onSchemaEdited = (schema) => this.setState({ schema, shareURL: null });
 
-  onUISchemaEdited = uiSchema => this.setState({ uiSchema, shareURL: null });
+  onUISchemaEdited = (uiSchema) => this.setState({ uiSchema, shareURL: null });
 
-  onFormDataEdited = formData => this.setState({ formData, shareURL: null });
+  onFormDataEdited = (formData) => this.setState({ formData, shareURL: null });
 
   onThemeSelected = (theme, { stylesheet, editor }) => {
     this.setState({ theme, editor: editor ? editor : "default" });
