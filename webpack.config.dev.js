@@ -30,7 +30,7 @@ module.exports = {
         include: [
           path.join(__dirname, "src"),
           path.join(__dirname, "playground"),
-          path.join(__dirname, "node_modules", "codemirror", "mode", "javascript"),
+          path.join(__dirname, "node_modules", "mode", "javascript"),
         ]
       },
       {
@@ -45,6 +45,10 @@ module.exports = {
           path.join(__dirname, "node_modules"),
         ],
       },
+      {
+        test: /\.ttf$/,
+        use: ['file-loader']
+      }
     ]
   }
 };
