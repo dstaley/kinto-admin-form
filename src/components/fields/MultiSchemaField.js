@@ -21,7 +21,7 @@ class AnyOfField extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const matchingOption = this.getMatchingOption(
       nextProps.formData,
       nextProps.options
@@ -129,36 +129,38 @@ class AnyOfField extends Component {
     }));
 
     return (
-      <div className="panel panel-default panel-body">
-        <div className="form-group">
-          <Widget
-            id={`${idSchema.$id}_anyof_select`}
-            schema={{ type: "number", default: 0 }}
-            onChange={this.onOptionChange}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            value={selectedOption}
-            options={{ enumOptions }}
-            {...uiOptions}
-          />
-        </div>
+      <div className="card">
+        <div className="card-body">
+          <div className="form-group">
+            <Widget
+              id={`${idSchema.$id}_anyof_select`}
+              schema={{ type: "number", default: 0 }}
+              onChange={this.onOptionChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              value={selectedOption}
+              options={{ enumOptions }}
+              {...uiOptions}
+            />
+          </div>
 
-        {option !== null && (
-          <_SchemaField
-            schema={optionSchema}
-            uiSchema={uiSchema}
-            errorSchema={errorSchema}
-            idSchema={idSchema}
-            idPrefix={idPrefix}
-            formData={formData}
-            onChange={onChange}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            registry={registry}
-            safeRenderCompletion={safeRenderCompletion}
-            disabled={disabled}
-          />
-        )}
+          {option !== null && (
+            <_SchemaField
+              schema={optionSchema}
+              uiSchema={uiSchema}
+              errorSchema={errorSchema}
+              idSchema={idSchema}
+              idPrefix={idPrefix}
+              formData={formData}
+              onChange={onChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              registry={registry}
+              safeRenderCompletion={safeRenderCompletion}
+              disabled={disabled}
+            />
+          )}
+        </div>
       </div>
     );
   }

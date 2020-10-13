@@ -61,6 +61,7 @@ function SelectWidget(props) {
     onBlur,
     onFocus,
     placeholder,
+    rawErrors,
   } = props;
   const { enumOptions, enumDisabled } = options;
   const emptyValue = multiple ? [] : "";
@@ -68,7 +69,9 @@ function SelectWidget(props) {
     <select
       id={id}
       multiple={multiple}
-      className="form-control"
+      className={`form-control ${
+        rawErrors && rawErrors.length ? "is-invalid" : ""
+      }`}
       value={typeof value === "undefined" ? emptyValue : value}
       required={required}
       disabled={disabled || readonly}

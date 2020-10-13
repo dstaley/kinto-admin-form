@@ -91,7 +91,7 @@ function Help(props) {
     return null;
   }
   if (typeof help === "string") {
-    return <p className="help-block">{help}</p>;
+    return <small className="help-block form-text text-muted">{help}</small>;
   }
   return <div className="help-block">{help}</div>;
 }
@@ -194,7 +194,7 @@ function WrapIfAdditional(props) {
   return (
     <div className={classNames}>
       <div className="row">
-        <div className="col-xs-5 form-additional">
+        <div className="col-5 form-additional">
           <div className="form-group">
             <Label label={keyLabel} required={required} id={`${id}-key`} />
             <LabelInput
@@ -205,10 +205,8 @@ function WrapIfAdditional(props) {
             />
           </div>
         </div>
-        <div className="form-additional form-group col-xs-5">
-          {props.children}
-        </div>
-        <div className="col-xs-2">
+        <div className="form-additional form-group col-5">{props.children}</div>
+        <div className="col-2">
           <IconButton
             type="danger"
             icon="remove"

@@ -5,6 +5,7 @@ import MonacoEditor from "react-monaco-editor";
 import { shouldRender } from "../src/utils";
 import { samples } from "./samples";
 import Form from "../src";
+import "./styles.css";
 
 const log = (type) => console.log.bind(console, type);
 const toJson = (val) => JSON.stringify(val, null, 2);
@@ -20,89 +21,91 @@ const liveSettingsSchema = {
 const themes = {
   default: {
     stylesheet:
-      "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css",
   },
   cerulean: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cerulean/bootstrap.min.css",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/cerulean/bootstrap.min.css",
   },
   cosmo: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cosmo/bootstrap.min.css",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/cosmo/bootstrap.min.css",
   },
   cyborg: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cyborg/bootstrap.min.css",
-    editor: "blackboard",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/cyborg/bootstrap.min.css",
   },
   darkly: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/darkly/bootstrap.min.css",
-    editor: "mbo",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/darkly/bootstrap.min.css",
   },
   flatly: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/flatly/bootstrap.min.css",
-    editor: "ttcn",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/flatly/bootstrap.min.css",
   },
   journal: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/journal/bootstrap.min.css",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/journal/bootstrap.min.css",
+  },
+  litera: {
+    stylesheet:
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/litera/bootstrap.min.css",
   },
   lumen: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/lumen/bootstrap.min.css",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/lumen/bootstrap.min.css",
   },
-  paper: {
+  lux: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/paper/bootstrap.min.css",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/lux/bootstrap.min.css",
   },
-  readable: {
+  materia: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/readable/bootstrap.min.css",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/materia/bootstrap.min.css",
+  },
+  minty: {
+    stylesheet:
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/minty/bootstrap.min.css",
+  },
+  pulse: {
+    stylesheet:
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/pulse/bootstrap.min.css",
   },
   sandstone: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/sandstone/bootstrap.min.css",
-    editor: "solarized",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/sandstone/bootstrap.min.css",
   },
   simplex: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/simplex/bootstrap.min.css",
-    editor: "ttcn",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/simplex/bootstrap.min.css",
+  },
+  sketchy: {
+    stylesheet:
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/sketchy/bootstrap.min.css",
   },
   slate: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/slate/bootstrap.min.css",
-    editor: "monokai",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/slate/bootstrap.min.css",
+  },
+  solar: {
+    stylesheet:
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/solar/bootstrap.min.css",
   },
   spacelab: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/spacelab/bootstrap.min.css",
-  },
-  "solarized-dark": {
-    stylesheet:
-      "//cdn.rawgit.com/aalpern/bootstrap-solarized/master/bootstrap-solarized-dark.css",
-    editor: "dracula",
-  },
-  "solarized-light": {
-    stylesheet:
-      "//cdn.rawgit.com/aalpern/bootstrap-solarized/master/bootstrap-solarized-light.css",
-    editor: "solarized",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/spacelab/bootstrap.min.css",
   },
   superhero: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/superhero/bootstrap.min.css",
-    editor: "dracula",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/superhero/bootstrap.min.css",
   },
   united: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/united/bootstrap.min.css",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/united/bootstrap.min.css",
   },
   yeti: {
     stylesheet:
-      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/yeti/bootstrap.min.css",
-    editor: "eclipse",
+      "//cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/yeti/bootstrap.min.css",
   },
 };
 
@@ -169,7 +172,7 @@ class Editor extends Component {
     this.state = { valid: true, code: props.code };
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     this.setState({ valid: true, code: props.code });
   }
 
@@ -199,8 +202,8 @@ class Editor extends Component {
     const icon = this.state.valid ? "ok" : "remove";
     const cls = this.state.valid ? "valid" : "invalid";
     return (
-      <div className="panel panel-default">
-        <div className="panel-heading">
+      <div className="card">
+        <div className="card-header">
           <span className={`${cls} glyphicon glyphicon-${icon}`} />
           {" " + title}
         </div>
@@ -240,11 +243,13 @@ class Selector extends Component {
       <ul className="nav nav-pills">
         {Object.keys(samples).map((label, i) => {
           return (
-            <li
-              key={i}
-              role="presentation"
-              className={this.state.current === label ? "active" : ""}>
-              <a href="#" onClick={this.onLabelClick(label)}>
+            <li key={i} role="presentation" className="nav-item">
+              <a
+                className={
+                  this.state.current === label ? "nav-link active" : "nav-link"
+                }
+                href="#"
+                onClick={this.onLabelClick(label)}>
                 {label}
               </a>
             </li>
@@ -280,7 +285,10 @@ class CopyLink extends Component {
     const { shareURL, onShare } = this.props;
     if (!shareURL) {
       return (
-        <button className="btn btn-default" type="button" onClick={onShare}>
+        <button
+          className="btn btn-outline-secondary"
+          type="button"
+          onClick={onShare}>
           Share
         </button>
       );
@@ -293,14 +301,14 @@ class CopyLink extends Component {
           className="form-control"
           defaultValue={shareURL}
         />
-        <span className="input-group-btn">
+        <div class="input-group-append">
           <button
-            className="btn btn-default"
+            className="btn btn-outline-secondary"
             type="button"
             onClick={this.onCopyClick}>
-            <i className="glyphicon glyphicon-copy" />
+            Copy
           </button>
-        </span>
+        </div>
       </div>
     );
   }
@@ -433,95 +441,94 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <div className="col-sm-7">
-          <Editor
-            title="JSONSchema"
-            theme={editor}
-            code={toJson(schema)}
-            onChange={this.onSchemaEdited}
-          />
-          <div className="row">
-            <div className="col-sm-6">
-              <Editor
-                title="UISchema"
-                theme={editor}
-                code={toJson(uiSchema)}
-                onChange={this.onUISchemaEdited}
-              />
-            </div>
-            <div className="col-sm-6">
-              <Editor
-                title="formData"
-                theme={editor}
-                code={toJson(formData)}
-                onChange={this.onFormDataEdited}
-              />
+        <div className="row">
+          <div className="editors col-sm-7">
+            <Editor
+              title="JSONSchema"
+              theme={editor}
+              code={toJson(schema)}
+              onChange={this.onSchemaEdited}
+            />
+            <div className="row">
+              <div className="col-sm-6">
+                <Editor
+                  title="UISchema"
+                  theme={editor}
+                  code={toJson(uiSchema)}
+                  onChange={this.onUISchemaEdited}
+                />
+              </div>
+              <div className="col-sm-6">
+                <Editor
+                  title="formData"
+                  theme={editor}
+                  code={toJson(formData)}
+                  onChange={this.onFormDataEdited}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="col-sm-5">
-          {this.state.form && (
-            <Form
-              ArrayFieldTemplate={ArrayFieldTemplate}
-              ObjectFieldTemplate={ObjectFieldTemplate}
-              liveValidate={liveSettings.validate}
-              disabled={liveSettings.disable}
-              omitExtraData={liveSettings.omitExtraData}
-              liveOmit={liveSettings.liveOmit}
-              schema={schema}
-              uiSchema={uiSchema}
-              formData={formData}
-              onChange={this.onFormDataChange}
-              onSubmit={({ formData }, e) => {
-                console.log("submitted formData", formData);
-                console.log("submit event", e);
-              }}
-              fields={{ geo: GeoPosition }}
-              validate={validate}
-              onBlur={(id, value) =>
-                console.log(`Touched ${id} with value ${value}`)
-              }
-              onFocus={(id, value) =>
-                console.log(`Focused ${id} with value ${value}`)
-              }
-              transformErrors={transformErrors}
-              onError={log("errors")}>
-              <div className="row">
-                <div className="col-sm-3">
-                  <button className="btn btn-primary" type="submit">
-                    Submit
-                  </button>
+          <div className="col-sm-5">
+            {this.state.form && (
+              <Form
+                ArrayFieldTemplate={ArrayFieldTemplate}
+                ObjectFieldTemplate={ObjectFieldTemplate}
+                liveValidate={liveSettings.validate}
+                disabled={liveSettings.disable}
+                omitExtraData={liveSettings.omitExtraData}
+                liveOmit={liveSettings.liveOmit}
+                schema={schema}
+                uiSchema={uiSchema}
+                formData={formData}
+                onChange={this.onFormDataChange}
+                onSubmit={({ formData }, e) => {
+                  console.log("submitted formData", formData);
+                  console.log("submit event", e);
+                }}
+                fields={{ geo: GeoPosition }}
+                validate={validate}
+                onBlur={(id, value) =>
+                  console.log(`Touched ${id} with value ${value}`)
+                }
+                onFocus={(id, value) =>
+                  console.log(`Focused ${id} with value ${value}`)
+                }
+                transformErrors={transformErrors}
+                onError={log("errors")}>
+                <div className="row">
+                  <div className="col-sm-3">
+                    <button className="btn btn-primary" type="submit">
+                      Submit
+                    </button>
+                  </div>
+                  <div className="col-sm-9 text-right">
+                    <CopyLink
+                      shareURL={this.state.shareURL}
+                      onShare={this.onShare}
+                    />
+                  </div>
                 </div>
-                <div className="col-sm-9 text-right">
-                  <CopyLink
-                    shareURL={this.state.shareURL}
-                    onShare={this.onShare}
-                  />
-                </div>
-              </div>
-            </Form>
-          )}
-        </div>
-        <div className="col-sm-12">
-          <p style={{ textAlign: "center" }}>
-            Powered by{" "}
-            <a href="https://github.com/mozilla-services/react-jsonschema-form">
-              react-jsonschema-form
-            </a>
-            . Bootstrap themes courtesy of{" "}
-            <a href="http://bootswatch.com/">Bootswatch</a> and{" "}
-            <a href="https://github.com/aalpern/bootstrap-solarized/">
-              bootstrap-solarized
-            </a>
-            . Bootstrap version v3.3.6.
-            {process.env.SHOW_NETLIFY_BADGE === "true" && (
-              <div style={{ float: "right" }}>
-                <a href="https://www.netlify.com">
-                  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" />
-                </a>
-              </div>
+              </Form>
             )}
-          </p>
+          </div>
+          <div className="col-sm-12">
+            <p style={{ textAlign: "center" }}>
+              Powered by{" "}
+              <a href="https://github.com/mozilla-services/react-jsonschema-form">
+                react-jsonschema-form
+              </a>
+              . Bootstrap themes courtesy of{" "}
+              <a href="http://bootswatch.com/">Bootswatch</a>. Bootstrap version
+              v4.5.2.
+              {process.env.SHOW_NETLIFY_BADGE === "true" && (
+                <div style={{ float: "right" }}>
+                  <a href="https://www.netlify.com">
+                    <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" />
+                  </a>
+                </div>
+              )}
+            </p>
+          </div>
         </div>
       </div>
     );

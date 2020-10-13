@@ -46,14 +46,16 @@ function DefaultArrayItem(props) {
   };
   return (
     <div key={props.key} className={props.className}>
-      <div className={props.hasToolbar ? "col-xs-9" : "col-xs-12"}>
+      <div className={props.hasToolbar ? "col-9" : "col-12"}>
         {props.children}
       </div>
 
       {props.hasToolbar && (
-        <div className="col-xs-3 array-item-toolbox">
+        <div className="col-3 array-item-toolbox">
           <div
             className="btn-group"
+            role="group"
+            aria-label="Array item controls"
             style={{
               display: "flex",
               justifyContent: "space-around",
@@ -120,7 +122,7 @@ function DefaultFixedArrayFieldTemplate(props) {
       )}
 
       <div
-        className="row array-item-list"
+        className="array-item-list"
         key={`array-item-list-${props.idSchema.$id}`}>
         {props.items && props.items.map(DefaultArrayItem)}
       </div>
@@ -159,7 +161,7 @@ function DefaultNormalArrayFieldTemplate(props) {
       )}
 
       <div
-        className="row array-item-list"
+        className="array-item-list"
         key={`array-item-list-${props.idSchema.$id}`}>
         {props.items && props.items.map((p) => DefaultArrayItem(p))}
       </div>
@@ -767,7 +769,7 @@ class ArrayField extends Component {
           rawErrors={rawErrors}
         />
       ),
-      className: "array-item",
+      className: "row array-item",
       disabled,
       hasToolbar: has.toolbar,
       hasMoveUp: has.moveUp,

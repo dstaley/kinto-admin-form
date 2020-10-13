@@ -974,7 +974,9 @@ describeRepeated("Form common", (createFormComponent) => {
     });
 
     describe("when the form data is set to null", () => {
-      beforeEach(() => comp.componentWillReceiveProps({ formData: null }));
+      beforeEach(() =>
+        comp.UNSAFE_componentWillReceiveProps({ formData: null })
+      );
 
       it("should call onChange", () => {
         sinon.assert.calledOnce(onChangeProp);
@@ -990,7 +992,7 @@ describeRepeated("Form common", (createFormComponent) => {
       };
 
       beforeEach(() =>
-        comp.componentWillReceiveProps({
+        comp.UNSAFE_componentWillReceiveProps({
           schema: newSchema,
           formData: "some value",
         })
@@ -1010,7 +1012,7 @@ describeRepeated("Form common", (createFormComponent) => {
       };
 
       beforeEach(() =>
-        comp.componentWillReceiveProps({
+        comp.UNSAFE_componentWillReceiveProps({
           schema: newSchema,
           formData: "something else",
         })
@@ -1030,7 +1032,10 @@ describeRepeated("Form common", (createFormComponent) => {
       };
 
       beforeEach(() =>
-        comp.componentWillReceiveProps({ schema: newSchema, formData: null })
+        comp.UNSAFE_componentWillReceiveProps({
+          schema: newSchema,
+          formData: null,
+        })
       );
 
       it("should call onChange", () => {
@@ -1099,7 +1104,7 @@ describeRepeated("Form common", (createFormComponent) => {
       it("should update form state from new formData prop value", () => {
         const { comp } = createFormComponent(formProps);
 
-        comp.componentWillReceiveProps({ formData: "yo" });
+        comp.UNSAFE_componentWillReceiveProps({ formData: "yo" });
 
         expect(comp.state.formData).eql("yo");
       });
@@ -1107,7 +1112,7 @@ describeRepeated("Form common", (createFormComponent) => {
       it("should validate formData when the schema is updated", () => {
         const { comp } = createFormComponent(formProps);
 
-        comp.componentWillReceiveProps({
+        comp.UNSAFE_componentWillReceiveProps({
           formData: "yo",
           schema: { type: "number" },
         });
@@ -1130,7 +1135,7 @@ describeRepeated("Form common", (createFormComponent) => {
           },
         });
 
-        comp.componentWillReceiveProps({ formData: { foo: "yo" } });
+        comp.UNSAFE_componentWillReceiveProps({ formData: { foo: "yo" } });
 
         expect(comp.state.formData).eql({ foo: "yo" });
       });
@@ -1146,7 +1151,7 @@ describeRepeated("Form common", (createFormComponent) => {
         };
         const { comp } = createFormComponent({ schema });
 
-        comp.componentWillReceiveProps({ formData: ["yo"] });
+        comp.UNSAFE_componentWillReceiveProps({ formData: ["yo"] });
 
         expect(comp.state.formData).eql(["yo"]);
       });
@@ -1918,7 +1923,7 @@ describeRepeated("Form common", (createFormComponent) => {
     it("should replace state when props remove formData keys", () => {
       const formData = { foo: "foo", bar: "bar" };
       const { comp, node } = createFormComponent({ schema, formData });
-      comp.componentWillReceiveProps({
+      comp.UNSAFE_componentWillReceiveProps({
         schema: {
           type: "object",
           properties: {
@@ -1938,7 +1943,7 @@ describeRepeated("Form common", (createFormComponent) => {
     it("should replace state when props change formData keys", () => {
       const formData = { foo: "foo", bar: "bar" };
       const { comp, node } = createFormComponent({ schema, formData });
-      comp.componentWillReceiveProps({
+      comp.UNSAFE_componentWillReceiveProps({
         schema: {
           type: "object",
           properties: {
@@ -1985,7 +1990,7 @@ describeRepeated("Form common", (createFormComponent) => {
     it("should not update idSchema for a falsey value", () => {
       const formData = { a: "int" };
       const { comp } = createFormComponent({ schema, formData });
-      comp.componentWillReceiveProps({
+      comp.UNSAFE_componentWillReceiveProps({
         schema: {
           type: "object",
           properties: {
@@ -2019,7 +2024,7 @@ describeRepeated("Form common", (createFormComponent) => {
         a: "int",
       };
       const { comp } = createFormComponent({ schema, formData });
-      comp.componentWillReceiveProps({
+      comp.UNSAFE_componentWillReceiveProps({
         schema: {
           type: "object",
           properties: {
