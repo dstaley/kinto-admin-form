@@ -34,7 +34,7 @@ function ArrayFieldTemplate(props) {
 
       {props.canAdd && (
         <div className="row">
-          <p className="col-xs-3 col-xs-offset-9 array-item-add text-right">
+          <p className="col-3 ml-auto array-item-add text-right">
             <button onClick={props.onAddClick} type="button">
               Custom +
             </button>

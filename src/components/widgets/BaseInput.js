@@ -63,7 +63,9 @@ function BaseInput(props) {
 
   return (
     <input
-      className="form-control"
+      className={`form-control ${
+        rawErrors && rawErrors.length ? "is-invalid" : ""
+      }`}
       readOnly={readonly}
       disabled={disabled}
       autoFocus={autofocus}
