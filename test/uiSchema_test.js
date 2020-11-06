@@ -3,7 +3,11 @@ import React from "react";
 import { Simulate } from "react-dom/test-utils";
 import SelectWidget from "../src/components/widgets/SelectWidget";
 import RadioWidget from "../src/components/widgets/RadioWidget";
-import { createFormComponent, createSandbox } from "./test_utils";
+import {
+  createFormComponent,
+  createSandbox,
+  renderFormComponentInBody,
+} from "./test_utils";
 
 describe("uiSchema", () => {
   let sandbox;
@@ -542,8 +546,9 @@ describe("uiSchema", () => {
         props.formData = formData;
       }
 
-      const { node } = createFormComponent(props);
+      const { node, removeFromBody } = renderFormComponentInBody(props);
       expect(node.querySelector(selector)).eql(document.activeElement);
+      removeFromBody();
     };
 
     describe("number", () => {
@@ -1106,11 +1111,11 @@ describe("uiSchema", () => {
           schema,
           uiSchema,
           formData: {
-            foo: 3.14,
+            foo: 31.4,
           },
         });
 
-        expect(node.querySelector("[type=number]").value).eql("3.14");
+        expect(node.querySelector("[type=number]").value).eql("31.4");
       });
 
       it("should update state when value is updated", () => {
@@ -1118,17 +1123,17 @@ describe("uiSchema", () => {
           schema,
           uiSchema,
           formData: {
-            foo: 3.14,
+            foo: 31.4,
           },
         });
 
         Simulate.change(node.querySelector("[type=number]"), {
           target: {
-            value: "6.28",
+            value: "62.8",
           },
         });
 
-        expect(comp.state.formData).eql({ foo: 6.28 });
+        expect(comp.state.formData).eql({ foo: 62.8 });
       });
 
       describe("Constraint attributes", () => {
@@ -1187,11 +1192,11 @@ describe("uiSchema", () => {
           schema,
           uiSchema,
           formData: {
-            foo: 3.14,
+            foo: 31.4,
           },
         });
 
-        expect(node.querySelector("[type=range]").value).eql("3.14");
+        expect(node.querySelector("[type=range]").value).eql("31.4");
       });
 
       it("should update state when value is updated", () => {
@@ -1199,17 +1204,17 @@ describe("uiSchema", () => {
           schema,
           uiSchema,
           formData: {
-            foo: 3.14,
+            foo: 31.4,
           },
         });
 
         Simulate.change(node.querySelector("[type=range]"), {
           target: {
-            value: "6.28",
+            value: "62.8",
           },
         });
 
-        expect(comp.state.formData).eql({ foo: 6.28 });
+        expect(comp.state.formData).eql({ foo: 62.8 });
       });
 
       describe("Constraint attributes", () => {
