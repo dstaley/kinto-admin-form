@@ -17,6 +17,19 @@ export function createFormComponent(props) {
   return createComponent(Form, { ...props, safeRenderCompletion: true });
 }
 
+// JSDOM requires that we render elements into `body` in order for things like
+// document.activeElement to work correctly.
+export function renderFormComponentInBody(props) {
+  const div = document.createElement("div");
+  document.body.appendChild(div);
+  const removeFromBody = () => {
+    document.body.removeChild(div);
+  };
+  const comp = render(<Form {...props} />, div);
+  const node = findDOMNode(comp);
+  return { comp, node, removeFromBody };
+}
+
 export function createSandbox() {
   const sandbox = sinon.sandbox.create();
   return sandbox;

@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import React from "react";
+import { isElementOfType } from "react-dom/test-utils";
 
 import {
   ADDITIONAL_PROPERTY_FLAG,
@@ -2851,12 +2852,11 @@ describe("utils", () => {
       );
     });
 
-    //TODO: Unskip the test when react>=16.3 will be used
-    it.skip("should not fail on forwarded ref component", () => {
+    it("should not fail on forwarded ref component", () => {
       const Widget = React.forwardRef((props, ref) => (
         <div {...props} ref={ref} />
       ));
-      expect(getWidget(schema, Widget)).eql(<Widget />);
+      expect(isElementOfType(<Widget />, Widget)).eql(true);
     });
   });
 });
